@@ -48,3 +48,4 @@ services:
       # (opcional) Webhook base URL — ajuste depois que o serviço tiver URL pública
       - key: WEBHOOK_URL
         sync: false       # ex: https://seu-servico.onrender.com
+        key: NODE_OPTIONS
