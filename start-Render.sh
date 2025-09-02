@@ -1,8 +1,8 @@
 #!/bin/sh
-# Script para inicializar o n8n no Render
+echo "🚀 Iniciando N8N no Render..."
 
-# Garante que o Render use a porta correta
+# Mapear a porta do Render para a porta usada pelo N8N
 export N8N_PORT=$PORT
 
-# Inicia o n8n
-n8n start
+# Rodar o n8n
+n8n start
