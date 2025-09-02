@@ -1,8 +1,12 @@
-# Usar imagem oficial do n8n
+# Usar a imagem oficial do n8n
 FROM n8nio/n8n:latest
 
-# Copiar script de inicialização já com permissão de execução
-COPY --chmod=755 start-render.sh /start-render.sh
+# Copiar o script de inicialização
+COPY start-render.sh /usr/local/bin/start-render.sh
+
+# Garantir permissões e formato correto de fim de linha
+RUN chmod 755 /usr/local/bin/start-render.sh \
+    && sed -i 's/\r$//' /usr/local/bin/start-render.sh
 
 # Rodar o script de inicialização
-CMD ["/start-render.sh"]
+CMD ["/usr/local/bin/start-render.sh"]
