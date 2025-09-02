@@ -1,16 +1,19 @@
-# n8n no Render
+# miguel-n8n (Render)
 
-Este repositório contém a configuração mínima para rodar o n8n no Render usando Docker.
+Instância única do n8n para o projeto Miguel, rodando no Render, com dados persistentes no *Supabase Postgres*.
 
 ## Deploy
+1. Conecte este repositório no Render como *Web Service* (env: Docker).
+2. O Render vai buildar usando o Dockerfile e aplicar envs do render.yaml.
+3. Crie os *Secrets* no Render (as chaves marcadas sync: false):
+   - N8N_BASIC_AUTH_PASSWORD
+   - N8N_ENCRYPTION_KEY
+   - DB_POSTGRESDB_HOST
+   - DB_POSTGRESDB_DATABASE
+   - DB_POSTGRESDB_USER
+   - DB_POSTGRESDB_PASSWORD
+   - (opcional) WEBHOOK_URL
 
-1. Faça fork ou clone deste repositório.
-2. No Render, crie um **Web Service** e aponte para este repositório.
-3. Ele detectará automaticamente o Dockerfile.
-4. Configure as variáveis de ambiente (exemplo no `.env.example`).
-5. Se quiser persistência, crie um **Disk** no Render e monte em `/home/node/.n8n`.
-
-## Healthcheck
-Configure no Render:
-- Liveness: `/healthz`
-- Readiness: `/healthz/readiness`
+## Testes rápidos
+- Health: GET /healthz
+- Editor: abra a URL do serviço no Render e faça login com BASIC_AUTH.
