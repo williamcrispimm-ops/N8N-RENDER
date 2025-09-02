@@ -1,9 +1,10 @@
 #!/bin/sh
+set -e
 
-echo "🚀 Iniciando N8N no Render..."
+echo "🚀 Iniciando n8n no Render..."
 
-# Mapear a porta do Render para a porta usada pelo N8N
-export N8N_PORT=$PORT
+export N8N_PORT=${PORT:-5678}
+export N8N_PROTOCOL=${N8N_PROTOCOL:-https}
+export N8N_HOST=${N8N_HOST:-localhost}
 
-# Rodar o n8n
-n8n start
+exec n8n start
