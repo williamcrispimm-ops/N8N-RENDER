@@ -1,31 +1,16 @@
-# miguel-n8n (Render)
+# n8n no Render
 
-Instância única do n8n para o projeto Miguel, rodando no Render com disco persistente.
+Este repositório contém a configuração mínima para rodar o n8n no Render usando Docker.
 
-## Deploy pelo Git
+## Deploy
 
-1. Clone este repositório.
-2. No Render, crie um **Web Service** selecionando este repo.
-3. O Render detectará o `render.yaml` e criará o serviço automaticamente.
+1. Faça fork ou clone deste repositório.
+2. No Render, crie um **Web Service** e aponte para este repositório.
+3. Ele detectará automaticamente o Dockerfile.
+4. Configure as variáveis de ambiente (exemplo no `.env.example`).
+5. Se quiser persistência, crie um **Disk** no Render e monte em `/home/node/.n8n`.
 
-## Variáveis/Secrets
-Defina no painel do Render os secrets listados em `.env.example`:
-
-- `N8N_BASIC_AUTH_PASSWORD`
-- `N8N_ENCRYPTION_KEY`
-- `DB_POSTGRESDB_PASSWORD`
-
-## Volume persistente
-O serviço monta um disco em `/home/node/.n8n`. Nele ficam **credenciais** e **workflows**.
-Assim, ao atualizar para versões novas do n8n (`latest`), seus dados permanecem.
-
-## Webhooks
-No n8n crie dois workflows:
-- `POST /webhook/sync` (para sistema/admin)
-- `POST /webhook/export` (para usuário/relatórios)
-
-O **Core (Northflank)** encaminha mensagens para essas rotas. Durante 02h–07h, o Core armazena no R2 e depois faz flush.
-
-## Segurança
-- Mantenha `N8N_BASIC_AUTH_ACTIVE=true` com usuário/senha fortes.
-- Use sempre HTTPS (Render já fornece automaticamente).
+## Healthcheck
+Configure no Render:
+- Liveness: `/healthz`
+- Readiness: `/healthz/readiness`
