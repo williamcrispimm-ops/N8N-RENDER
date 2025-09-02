@@ -1,0 +1,57 @@
+services:
+  - type: web
+    name: miguel-n8n
+    env: docker
+    plan: free
+    autoDeploy: true
+    docker:
+      image: docker.n8n.io/n8nio/n8n:latest
+    healthCheckPath: /healthz
+    envVars:
+      - key: N8N_PORT
+        value: "5678"
+      - key: N8N_PROTOCOL
+        value: "https"
+      - key: N8N_HOST
+        value: miguel-n8n.onrender.com   # ajuste após o 1º deploy se necessário
+      - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
+
+      # Autenticação do editor do n8n
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: admin
+      - key: N8N_BASIC_AUTH_PASSWORD
+        sync: false          # defina como Secret no Render
+      - key: N8N_ENCRYPTION_KEY
+        sync: false          # defina como Secret no Render
+
+      # Banco (Supabase)
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_HOST
+        value: db.efpotgrfqmhczkhdvwsw.supabase.co
+      - key: DB_POSTGRESDB_PORT
+        value: "5432"
+      - key: DB_POSTGRESDB_DATABASE
+        value: postgres
+      - key: DB_POSTGRESDB_USER
+        value: postgres
+      - key: DB_POSTGRESDB_PASSWORD
+        sync: false          # defina como Secret no Render
+      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+        value: "false"
+
+      # Execuções (opcional)
+      - key: EXECUTIONS_PROCESS
+        value: main
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: none
+      - key: EXECUTIONS_DATA_SAVE_ON_ERROR
+        value: all
+
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
