@@ -1,51 +1,32 @@
-services:
-  - type: web
-    name: n8n-render
-    env: docker
-    plan: free
-    autoDeploy: true
-
-    # Render usa esse path para healthcheck
-    healthCheckPath: /healthz
-
-    # Variáveis de ambiente (as que tiverem sync:false você
-    # cria como Secret no painel do Render)
-    envVars:
-      # Porta/Protocolo/Timezone
-      - key: N8N_PORT
-        value: "5678"
-      - key: N8N_PROTOCOL
-        value: "https"
-      - key: GENERIC_TIMEZONE
-        value: America/Sao_Paulo
-
-      # Autenticação do editor n8n
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: "true"
-      - key: N8N_BASIC_AUTH_USER
-        value: "admin"
-      - key: N8N_BASIC_AUTH_PASSWORD
-        sync: false       # defina em Secrets do Render
-
-      # Criptografia de credenciais
-      - key: N8N_ENCRYPTION_KEY
-        sync: false       # defina em Secrets do Render (string longa)
-
-      # Banco (Supabase / Postgres)
-      - key: DB_TYPE
-        value: postgresdb
-      - key: DB_POSTGRESDB_HOST
-        sync: false       # ex: db.xxxxx.supabase.co
-      - key: DB_POSTGRESDB_PORT
-        value: "5432"
-      - key: DB_POSTGRESDB_DATABASE
-        sync: false       # ex: postgres
-      - key: DB_POSTGRESDB_USER
-        sync: false       # ex: postgres
-      - key: DB_POSTGRESDB_PASSWORD
-        sync: false
-
-      # (opcional) Webhook base URL — ajuste depois que o serviço tiver URL pública
-      - key: WEBHOOK_URL
-        sync: false       # ex: https://seu-servico.onrender.com
-        key: NODE_OPTIONS
+plan: free
+autoDeploy: true
+docker:
+  image: n8nio/n8n:latest
+  healthCheckPath: /healthz
+envVars:
+  - key: N8N_PORT
+    value: "5678"
+  - key: N8N_PROTOCOL
+    value: "https"
+  - key: N8N_HOST
+    value: miguel-n8n.onrender.com
+  - key: GENERIC_TIMEZONE
+    value: America/Sao_Paulo
+  - key: N8N_BASIC_AUTH_ACTIVE
+    value: "true"
+  - key: N8N_BASIC_AUTH_USER
+    value: admin
+  - key: N8N_BASIC_AUTH_PASSWORD
+    value: sua-senha-aqui
+  - key: N8N_ENCRYPTION_KEY
+    sync: false
+  - key: DB_POSTGRESDB_HOST
+    value: seu-host.supabase.co
+  - key: DB_POSTGRESDB_PORT
+    value: "5432"
+  - key: DB_POSTGRESDB_DATABASE
+    value: postgres
+  - key: DB_POSTGRESDB_USER
+    value: postgres
+  - key: DB_POSTGRESDB_PASSWORD
+    sync: false
