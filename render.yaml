@@ -1,41 +1,17 @@
 services:
   - type: web
-    name: miguel-n8n
+    name: n8n-render
     env: docker
     plan: free
-    branch: main
     autoDeploy: true
     dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
     envVars:
-      - key: N8N_ENCRYPTION_KEY
-        value: troque-para-uma-chave-bem-longa
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: "true"
-      - key: N8N_BASIC_AUTH_USER
-        value: admin
-      - key: N8N_BASIC_AUTH_PASSWORD
-        value: senha-forte
       - key: GENERIC_TIMEZONE
         value: America/Sao_Paulo
+      - key: N8N_PORT
+        value: 5678
       - key: N8N_PROTOCOL
         value: https
-      - key: NODE_OPTIONS
-        value: --dns-result-order=ipv4first
-      - key: DB_TYPE
-        value: postgresdb
-      - key: DB_POSTGRESDB_HOST
-        value: db.efpotgrfqmhczkhdvwsw.supabase.co
-      - key: DB_POSTGRESDB_PORT
-        value: "5432"
-      - key: DB_POSTGRESDB_DATABASE
-        value: miguelprpject_dstabasew
-      - key: DB_POSTGRESDB_USER
-        value: postgres
-      - key: DB_POSTGRESDB_PASSWORD
-        sync: false   # 🔒 defina no painel do Render
-      - key: DB_POSTGRESDB_SCHEMA
-        value: n8n
-      - key: DB_POSTGRESDB_SSL
-        value: "true"
-      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-        value: "false"
+      - key: WEBHOOK_URL
+        value: https://n8n-render-jhyq.onrender.com
