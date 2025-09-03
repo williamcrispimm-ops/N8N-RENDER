@@ -20,7 +20,9 @@ services:
         value: william.crispimm@gmail.com
       - key: N8N_BASIC_AUTH_PASSWORD
         value: Miguel!migrum2025
-
+- key: DB_SQLITE_VACUUM_ON_STARTUP
+        value: false
+        
       # Timezone
       - key: GENERIC_TIMEZONE
         value: America/Sao_Paulo
