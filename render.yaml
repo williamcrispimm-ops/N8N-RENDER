@@ -31,4 +31,9 @@ envVars:
     value: postgres
   - key: DB_POSTGRESDB_PASSWORD
    value: tkbLAzufrqZOyOa9
-   sync: false
+   - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+   value: "false"
+    sync: false
+ - key: NODE_OPTIONS
+   value: --dns-result-order=ipv4first
+ sync: false
