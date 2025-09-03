@@ -1,38 +1,54 @@
 services:
   - type: web
-    name: n8n-render
+    name: miguel-n8n
     env: docker
     plan: free
-    autoDeploy: true
+    region: oregon
     dockerfilePath: ./Dockerfile
+
+    healthCheckPath: /healthz
+
     envVars:
-      - key: DB_TYPE
-        value: postgresdb
-      - key: DB_POSTGRESDB_HOST
-        value: db-pool.<ID>.supabase.co
-      - key: DB_POSTGRESDB_PORT
-        value: "5432"
-      - key: DB_POSTGRESDB_DATABASE
-        value: postgres
-      - key: DB_POSTGRESDB_USER
-        value: postgres
-      - key: DB_POSTGRESDB_PASSWORD
-        value: <SENHA>
-      - key: DB_POSTGRESDB_SSL
-        value: "true"
-      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-        value: "false"
-      - key: DB_POSTGRESDB_SCHEMA
-        value: n8n
+      # ---- Base n8n (ajuste host após 1º deploy se quiser domínio próprio) ----
       - key: GENERIC_TIMEZONE
         value: America/Sao_Paulo
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_HOST
+        value: miguel-n8n.onrender.com
       - key: N8N_ENCRYPTION_KEY
-        value: miguel-key-2025
+        sync: false     # defina no Render (Secret)
       - key: N8N_BASIC_AUTH_ACTIVE
-        value: "true"
+        value: 'true'
       - key: N8N_BASIC_AUTH_USER
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: admin123
-      - key: WEBHOOK_URL
-        value: https://n8n-render.onrender.com
+        sync: false     # defina no Render (Secret)
+
+      # ---- Postgres (Neon) ----
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_SCHEMA
+        value: n8n
+      - key: DB_POSTGRESDB_HOST
+        value: <SEU-HOST-NEON>             # ex: ep-xxx.aws.neon.tech
+      - key: DB_POSTGRESDB_PORT
+        value: '5432'
+      - key: DB_POSTGRESDB_DATABASE
+        value: miguel_                    # ex: main
+      - key: DB_POSTGRESDB_USER
+        value: neondb_owner              # ex: neondb_owner
+      - key: DB_POSTGRESDB_PASSWORD
+        sync: false                        # defina no Render (Secret)
+
+      # ---- Economizar horas no Neon (pool pequeno e conexões curtas) ----
+      - key: DB_POSTGRESDB_POOL_SIZE
+        value: '2'
+      - key: DB_POSTGRESDB_ACQUIRE_TIMEOUT
+        value: '3000'
+      - key: DB_POSTGRESDB_IDLE_TIMEOUT
+        value: '5000'
+
+      # ---- Evitar pings desnecessários ----
+      - key: N8N_DIAGNOSTICS_ENABLED
+        value: 'false'
