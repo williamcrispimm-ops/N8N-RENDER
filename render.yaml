@@ -43,7 +43,7 @@ services:
         value: Miguelito
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
-        value: tkbLAzufrqZOyOa9
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmcG90Z3JmcW1oY3praGR2d3N3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjQ5NTYwMywiZXhwIjoyMDcyMDcxNjAzfQ.eGlNUUupqQiXHDGMsh1OACdNXTENrzALxR4eRBkJZ-Y
 
       # >>> AQUI ESTÁ O PULO DO GATO (igual ao Neon):
       - key: DB_POSTGRESDB_SCHEMA
