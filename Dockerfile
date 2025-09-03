@@ -9,4 +9,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD wget -qO- http://localhost:5678/healthz || exit 1
 
 # Start: bind automático na porta do Render
-CMD ["bash","-lc","export N8N_PORT=${PORT:-5678}; n8n start"]
+CMD ["sh", "-c", "export N8N_PORT=${PORT:-5678}; n8n start"]
