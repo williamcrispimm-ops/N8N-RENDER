@@ -1,38 +1,44 @@
-plan: free
-autoDeploy: true
-docker:
-  image: n8nio/n8n:latest
-  healthCheckPath: /healthz
-envVars:
-  - key: N8N_PORT
-    value: "5678"
-  - key: N8N_PROTOCOL
-    value: "https"
-  - key: N8N_HOST
-    value: n8n-render-qxc2.onrender.com
-  - key: GENERIC_TIMEZONE
-    value: America/Sao_Paulo
-  - key: N8N_BASIC_AUTH_ACTIVE
-    value: "true"
-  - key: N8N_BASIC_AUTH_USER
-    value: william.crispimm@gmail.com
-  - key: N8N_BASIC_AUTH_PASSWORD
-   sync: false
-  - key: N8N_ENCRYPTION_KEY
-    sync: false
-  - key: DB_POSTGRESDB_HOST
-    value: db.efpotgrfqmhczkhdvwsw.supabase.co
-  - key: DB_POSTGRESDB_PORT
-    value: "5432"
-  - key: DB_POSTGRESDB_DATABASE
-    value: postgresdb
-  - key: DB_POSTGRESDB_USER
-    value: postgres
-  - key: DB_POSTGRESDB_PASSWORD
-   value: tkbLAzufrqZOyOa9
-   - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-   value: "false"
-    sync: false
- - key: NODE_OPTIONS
-   value: --dns-result-order=ipv4first
- sync: false
+services:
+  - type: web
+    name: n8n-render
+    env: docker
+    plan: free
+    autoDeploy: true
+    docker:
+      image: n8nio/n8n:latest
+    envVars:
+      # Configurações principais do n8n
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_HOST
+        value: n8n-render-qxc2.onrender.com
+      - key: N8N_ENCRYPTION_KEY
+        value: 5775f8694d1e2405a805200d956e15709f2079915216810ffcb4c6d7d15f970f
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: true
+      - key: N8N_BASIC_AUTH_USER
+        value: william.crispimm@gmail.com
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: Miguel!migrum2025
+
+      # Timezone
+      - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
+
+      # Configuração do banco Postgres (Supabase)
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_HOST
+        value: db.efpotgrfqmhczkhdvwsw.supabase.co
+      - key: DB_POSTGRESDB_PORT
+        value: "5432"
+      - key: DB_POSTGRESDB_DATABASE
+        value: postgres
+      - key: DB_POSTGRESDB_USER
+        value: postgres
+      - key: DB_POSTGRESDB_PASSWORD
+        value: tkbLAzufrqZOyOa9
+
+      # Webhook (opcional, mas recomendado se quiser expor endpoints do n8n)
+      - key: WEBHOOK_URL
+        value: https://miguel-n8n.onrender.com/
