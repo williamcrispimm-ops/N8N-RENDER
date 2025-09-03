@@ -1,36 +1,26 @@
 services:
   - type: web
-    name: n8n-render
+    name: miguel-n8n
     env: docker
     plan: free
+    branch: main
     autoDeploy: true
-
-    docker:
-      image: docker.io/n8nio/n8n:latest
-      healthCheckPath: /healthz
-
+    dockerfilePath: ./Dockerfile
     envVars:
-      # ===== Básico do n8n =====
-      - key: GENERIC_TIMEZONE
-        value: America/Sao_Paulo
-      - key: N8N_DIAGNOSTICS_ENABLED
-        value: "false"
-      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
-        value: "false"   # silencia o warning de perms no Render
-      - key: N8N_BLOCK_ENV_ACCESS_IN_NODE
-        value: "false"   # evita erro em expressões que usam env
-
-      # ===== Editor (opcional: BASIC AUTH) =====
+      - key: N8N_ENCRYPTION_KEY
+        value: troque-para-uma-chave-bem-longa
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
-        sync: false
-        value: william.crispimm@gmail.com
+        value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
-        sync: false
-        value: Miguel@2025
-
-      # ===== Banco: Supabase (conexão DIRETA, não usar pooled) =====
+        value: senha-forte
+      - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
+      - key: N8N_PROTOCOL
+        value: https
+      - key: NODE_OPTIONS
+        value: --dns-result-order=ipv4first
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
@@ -38,24 +28,14 @@ services:
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
-        value: postgres
+        value: miguelprpject_dstabasew
       - key: DB_POSTGRESDB_USER
-        value: Miguelito
+        value: postgres
       - key: DB_POSTGRESDB_PASSWORD
-        sync: false
-        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmcG90Z3JmcW1oY3praGR2d3N3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjQ5NTYwMywiZXhwIjoyMDcyMDcxNjAzfQ.eGlNUUupqQiXHDGMsh1OACdNXTENrzALxR4eRBkJZ-Y
-
-      # >>> AQUI ESTÁ O PULO DO GATO (igual ao Neon):
+        sync: false   # 🔒 defina no painel do Render
       - key: DB_POSTGRESDB_SCHEMA
         value: n8n
-
-      # SSL obrigatório no Supabase
       - key: DB_POSTGRESDB_SSL
         value: "true"
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: "false"
-
-      # ===== Webhook base (opcional) =====
-      # Ajuste depois do primeiro deploy se quiser webhooks públicos
-      - key: WEBHOOK_URL
-        value: https://n8n-render-qxc2.onrender.com/
