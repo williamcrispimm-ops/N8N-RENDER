@@ -38,6 +38,8 @@ services:
         value: postgres
       - key: DB_POSTGRESDB_PASSWORD
         value: tkbLAzufrqZOyOa9
+         - key: DB_POSTGRESDB_SCHEMA
+        value: tn8n
 
       # Webhook (opcional, mas recomendado se quiser expor endpoints do n8n)
       - key: WEBHOOK_URL
