@@ -9,24 +9,24 @@ envVars:
   - key: N8N_PROTOCOL
     value: "https"
   - key: N8N_HOST
-    value: miguel-n8n.onrender.com
+    value: /n8n-render-qxc2.onrender.com
   - key: GENERIC_TIMEZONE
     value: America/Sao_Paulo
   - key: N8N_BASIC_AUTH_ACTIVE
     value: "true"
   - key: N8N_BASIC_AUTH_USER
-    value: admin
+    value: william.crispimm@gmail.com
   - key: N8N_BASIC_AUTH_PASSWORD
-    value: sua-senha-aqui
+    value: Miguelmigrum2025
   - key: N8N_ENCRYPTION_KEY
-    sync: false
+    value: 5775f8694d1e2405a805200d956e15709f2079915216810ffcb4c6d7d15f970f
   - key: DB_POSTGRESDB_HOST
-    value: seu-host.supabase.co
+    value: db.efpotgrfqmhczkhdvwsw.supabase.co
   - key: DB_POSTGRESDB_PORT
     value: "5432"
   - key: DB_POSTGRESDB_DATABASE
-    value: postgres
+    value: postgresdb
   - key: DB_POSTGRESDB_USER
     value: postgres
   - key: DB_POSTGRESDB_PASSWORD
-    sync: false
+    value: Miguelmigrum2025
