@@ -30,5 +30,5 @@ envVars:
   - key: DB_POSTGRESDB_USER
     value: postgres
   - key: DB_POSTGRESDB_PASSWORD
-   value: Miguelmigrum2025
+   value: tkbLAzufrqZOyOa9
    sync: false
