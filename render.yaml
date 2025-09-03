@@ -40,7 +40,7 @@ services:
       - key: DB_POSTGRESDB_DATABASE
         value: postgres
       - key: DB_POSTGRESDB_USER
-        value: postgres
+        value: Miguelito
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
         value: tkbLAzufrqZOyOa9
