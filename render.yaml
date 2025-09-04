@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: miguel-n8n
+    env: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: N8N_HOST
+        value: 
+      - key: WEBHOOK_TUNNEL_URL
+        value: 
+      - key: PORT
+        value: 443
+      - key: DB_TYPE
+        value: postgresdb
+      - key: DB_POSTGRESDB_HOST
+        value: db.hostname.com
+      - key: DB_POSTGRESDB_PORT
+        value: 5432
+      - key: DB_POSTGRESDB_DATABASE
+        value: nome_do_banco
+      - key: DB_POSTGRESDB_USER
+        value: usuario
+      - key: DB_POSTGRESDB_PASSWORD
+        value: senha
+      - key: N8N_ENCRYPTION_KEY
+        value: chave-super-secreta
+      - key: N8N_PATH
+        value: /
