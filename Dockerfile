@@ -1,4 +1,4 @@
 FROM n8nio/n8n
 
-# Porta que o Fly.io irá mapear
-EXPOSE 5678
+ENV N8N_PORT=443
+EXPOSE 443
