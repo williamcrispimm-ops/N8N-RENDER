@@ -1,23 +1,12 @@
-app = "nome-do-seu-app-n8n"
-primary_region = "gru"
+[[services]]
+  internal_port = 5678
+  protocol = "tcp"
 
-[env]
-N8N_PORT = "5678"
-N8N_PROTOCOL = "http"
-N8N_HOST = "0.0.0.0"
-N8N_BASIC_AUTH_ACTIVE = "true"
-N8N_BASIC_AUTH_USER = "admin"
-N8N_BASIC_AUTH_PASSWORD = "senha-forte-aqui"
-DB_TYPE = "postgresdb"
-DB_POSTGRESDB_HOST = "seu-host.supabase.co"
-DB_POSTGRESDB_PORT = "5432"
-DB_POSTGRESDB_DATABASE = "postgres"
-DB_POSTGRESDB_USER = "postgres"
-DB_POSTGRESDB_PASSWORD = "sua-senha"
-N8N_PERSONALIZATION_ENABLED = "false"
-N8N_DIAGNOSTICS_ENABLED = "false"
-N8N_METRICS = "false"
-WEBHOOK_URL = "https://nome-do-seu-app-n8n.fly.dev"
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80  # <- Externa (Fly recebe por aqui)
 
-[experimental]
-auto_rollback = true
+  [[services.tcp_checks]]
+    interval = "30s"
+    timeout = "2s"
+    grace_period = "10s"
