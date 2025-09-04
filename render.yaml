@@ -8,24 +8,24 @@ services:
     autoDeploy: true
     envVars:
       - key: N8N_HOST
-        value: 
+        value: miguel-n8n-g4ya.onrender.com
       - key: WEBHOOK_TUNNEL_URL
-        value: 
+        value: https://miguel-n8n-g4ya.onrender.com
       - key: PORT
         value: 443
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        value: db.hostname.com
+        value: ep-wandering-frost-acjqgsb7-pooler.sa-east-1.aws.neon.tech
       - key: DB_POSTGRESDB_PORT
         value: 5432
       - key: DB_POSTGRESDB_DATABASE
-        value: nome_do_banco
+        value: miguel_
       - key: DB_POSTGRESDB_USER
-        value: usuario
+        value: neondb_owner
       - key: DB_POSTGRESDB_PASSWORD
-        value: senha
+        value: npg_G4FxBgIR8Nme
       - key: N8N_ENCRYPTION_KEY
-        value: chave-super-secreta
+        value: 5775f8694d1e2405a805200d956e15709f2079915216810ffcb4c6d7d15f970f
       - key: N8N_PATH
         value: /
