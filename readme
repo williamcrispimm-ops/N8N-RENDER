@@ -1,0 +1,26 @@
+# Instruções para deploy do n8n no Render
+
+1. Crie um repositório no GitHub com os seguintes arquivos:
+   - Dockerfile
+   - .env (baseado no .env.example)
+   - README.txt
+
+2. No site do Render:
+   - Novo Web Service
+   - Selecione o repositório do GitHub
+   - Escolha Docker environment
+   - Sete a branch correta
+   - Porta: 443
+
+3. Nas ENV VARS do Render:
+   - Adicione as mesmas variáveis do .env manualmente (exceto PORT)
+   - Adicione PORT = 443
+
+4. Aguarde o build finalizar.
+
+5. Acesse:  
+   https://<seu-subdomínio>.onrender.com
+
+6. Teste o webhook com Telegram após garantir que:
+   - O bot está ativo
+   - O n8n está com a URL correta no WEBHOOK_TUNNEL_URL
