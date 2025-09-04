@@ -5,9 +5,13 @@ services:
     plan: free
     autoDeploy: true
     healthCheckPath: /healthz
+    Region: oregon
+    dockerfilePath: ./Dockerfile
 
     # se estiver usando Dockerfile no repo, não precisa declarar image
     # o Render vai buildar e rodar "n8n start" do Dockerfile
+    - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
 
     envVars:
       # === URL pública para o Telegram registrar o webhook (porta 443) ===
@@ -35,12 +39,14 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        sync: false
+        value: ep-wandering-frost-acjqgsb7-pooler.sa-east-1.aws.neon.tech
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
-        sync: false
+        value: miguel_
       - key: DB_POSTGRESDB_USER
-        sync: false
+        valu: neondb_owner
       - key: DB_POSTGRESDB_PASSWORD
-        sync: false
+        value: npg_G4FxBgIR8Nme
+        - key: DB_POSTGRESDB_SCHEMA
+        value: n8n
