@@ -32,6 +32,6 @@ services:
       - key: N8N_HOST
         value: 0.0.0.0
       - key: N8N_PORT
-        value: 443
+        value: 5678
       - key: GENERIC_TIMEZONE
         value: America/Sao_Paulo
