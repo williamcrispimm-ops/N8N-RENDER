@@ -5,13 +5,9 @@ services:
     plan: free
     autoDeploy: true
     healthCheckPath: /healthz
-    Region: oregon
-    dockerfilePath: ./Dockerfile
 
     # se estiver usando Dockerfile no repo, não precisa declarar image
     # o Render vai buildar e rodar "n8n start" do Dockerfile
-    - key: GENERIC_TIMEZONE
-        value: America/Sao_Paulo
 
     envVars:
       # === URL pública para o Telegram registrar o webhook (porta 443) ===
@@ -19,11 +15,11 @@ services:
         value: https
       # Ajuste depois do 1º deploy para o seu domínio real do Render
       - key: N8N_HOST
-        value: n8n-render-jhyq.onrender.com
+        value: n8n-render-xxxx.onrender.com
       - key: WEBHOOK_URL
-        value: https://n8n-render-jhyq.onrender.com
+        value: https://n8n-render-xxxx.onrender.com
       - key: N8N_WEBHOOK_URL
-        value: https://n8n-render-jhyq.onrender.com
+        value: https://n8n-render-xxxx.onrender.com
 
       # n8n escuta internamente na porta do Render ($PORT)
       - key: N8N_PORT
@@ -31,7 +27,7 @@ services:
 
       # (opcional mas recomendado para editor)
       - key: N8N_EDITOR_BASE_URL
-        value: https://n8n-render-jhyq.onrender.com
+        value: https://n8n-render-xxxx.onrender.com
       - key: NODE_ENV
         value: production
 
@@ -39,14 +35,12 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        value: ep-wandering-frost-acjqgsb7-pooler.sa-east-1.aws.neon.tech
+        sync: false
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
-        value: miguel_
+        sync: false
       - key: DB_POSTGRESDB_USER
-        valu: neondb_owner
+        sync: false
       - key: DB_POSTGRESDB_PASSWORD
-        value: npg_G4FxBgIR8Nme
-        - key: DB_POSTGRESDB_SCHEMA
-        value: n8n
+        sync: false
