@@ -1,56 +1,46 @@
 services:
   - type: web
-    name: miguel-n8n
+    name: n8n-render
     env: docker
     plan: free
-    region: oregon
-    dockerfilePath: ./Dockerfile
-
+    autoDeploy: true
     healthCheckPath: /healthz
 
+    # se estiver usando Dockerfile no repo, não precisa declarar image
+    # o Render vai buildar e rodar "n8n start" do Dockerfile
+
     envVars:
-      # ---- Base n8n (ajuste host após 1º deploy se quiser domínio próprio) ----
-      - key: GENERIC_TIMEZONE
-        value: America/Sao_Paulo
+      # === URL pública para o Telegram registrar o webhook (porta 443) ===
       - key: N8N_PROTOCOL
         value: https
+      # Ajuste depois do 1º deploy para o seu domínio real do Render
       - key: N8N_HOST
-        value: miguel-n8n.onrender.com
-      - key: N8N_ENCRYPTION_KEY
-        sync: false     # defina no Render (Secret)
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: 'true'
-      - key: N8N_BASIC_AUTH_USER
-        value: admin
-      - key: N8N_BASIC_AUTH_PASSWORD
-        sync: false     # defina no Render (Secret)
-- key: N8N_PORT
-        VALUE: 5678
-        
-      # ---- Postgres (Neon) ----
+        value: n8n-render-jhyq.onrender.com
+      - key: WEBHOOK_URL
+        value: https://n8n-render-jhyq.onrender.com
+      - key: N8N_WEBHOOK_URL
+        value: https://n8n-render-jhyq.onrender.com
+
+      # n8n escuta internamente na porta do Render ($PORT)
+      - key: N8N_PORT
+        value: "5678"
+
+      # (opcional mas recomendado para editor)
+      - key: N8N_EDITOR_BASE_URL
+        value: https://n8n-render-jhyq.onrender.com
+      - key: NODE_ENV
+        value: production
+
+      # ====== Banco (você já tem no Render; deixe como secrets ali) ======
       - key: DB_TYPE
         value: postgresdb
-      - key: DB_POSTGRESDB_SCHEMA
-        value: n8n
       - key: DB_POSTGRESDB_HOST
-        value: <SEU-HOST-NEON>             # ex: ep-xxx.aws.neon.tech
+        sync: false
       - key: DB_POSTGRESDB_PORT
-        value: '5432'
+        value: "5432"
       - key: DB_POSTGRESDB_DATABASE
-        value: miguel_                    # ex: main
+        sync: false
       - key: DB_POSTGRESDB_USER
-        value: neondb_owner              # ex: neondb_owner
+        sync: false
       - key: DB_POSTGRESDB_PASSWORD
-        sync: false                        # defina no Render (Secret)
-
-      # ---- Economizar horas no Neon (pool pequeno e conexões curtas) ----
-      - key: DB_POSTGRESDB_POOL_SIZE
-        value: '2'
-      - key: DB_POSTGRESDB_ACQUIRE_TIMEOUT
-        value: '3000'
-      - key: DB_POSTGRESDB_IDLE_TIMEOUT
-        value: '5000'
-
-      # ---- Evitar pings desnecessários ----
-      - key: N8N_DIAGNOSTICS_ENABLED
-        value: 'false'
+        sync: false
