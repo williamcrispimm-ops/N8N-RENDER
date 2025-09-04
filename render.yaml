@@ -1,20 +1,14 @@
 services:
   - type: web
-    name: miguel-n8n
+    name: miguel_n8n
     env: docker
     plan: free
-    branch: main
+    region: sa-east-1
     dockerfilePath: ./Dockerfile
-    autoDeploy: true
+
     envVars:
-      - key: N8N_HOST
-        value: miguel-n8n-g4ya.onrender.com
-      - key: WEBHOOK_TUNNEL_URL
-        value: https://miguel-n8n-g4ya.onrender.com
-      - key: PORT
-        value: 443
       - key: DB_TYPE
-        value: postgresdb
+        value: postgres
       - key: DB_POSTGRESDB_HOST
         value: ep-wandering-frost-acjqgsb7-pooler.sa-east-1.aws.neon.tech
       - key: DB_POSTGRESDB_PORT
@@ -25,7 +19,19 @@ services:
         value: neondb_owner
       - key: DB_POSTGRESDB_PASSWORD
         value: npg_G4FxBgIR8Nme
+      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+        value: 'false'
+      - key: DB_POSTGRESDB_SSL
+        value: 'true'
+      - key: DB_POSTGRESDB_SCHEMA
+        value: miguel_
       - key: N8N_ENCRYPTION_KEY
         value: 5775f8694d1e2405a805200d956e15709f2079915216810ffcb4c6d7d15f970f
-      - key: N8N_PATH
-        value: /
+      - key: WEBHOOK_TUNNEL_URL
+        value: https://miguel-n8n-g4ya.onrender.com
+      - key: N8N_HOST
+        value: 0.0.0.0
+      - key: N8N_PORT
+        value: 443
+      - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
