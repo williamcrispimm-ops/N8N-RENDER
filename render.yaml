@@ -24,7 +24,9 @@ services:
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
         sync: false     # defina no Render (Secret)
-
+- key: N8N_PORT
+        VALUE: 5678
+        
       # ---- Postgres (Neon) ----
       - key: DB_TYPE
         value: postgresdb
