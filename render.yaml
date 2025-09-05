@@ -14,7 +14,7 @@ services:
       - key: DB_POSTGRESDB_PORT
         value: 5432
       - key: DB_POSTGRESDB_DATABASE
-        value: miguel_
+        value: Miguel_n8n
       - key: DB_POSTGRESDB_USER
         value: neondb_owner
       - key: DB_POSTGRESDB_PASSWORD
@@ -24,7 +24,7 @@ services:
       - key: DB_POSTGRESDB_SSL
         value: 'true'
       - key: DB_POSTGRESDB_SCHEMA
-        value: miguel_
+        value: Miguel_n8n
       - key: N8N_ENCRYPTION_KEY
         value: 5775f8694d1e2405a805200d956e15709f2079915216810ffcb4c6d7d15f970f
       - key: WEBHOOK_TUNNEL_URL
